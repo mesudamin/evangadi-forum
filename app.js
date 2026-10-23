@@ -1,24 +1,21 @@
 const express = require('express');
 const app = express();
+const userRoute = require('./Router/userRoute');
+const questionRoute = require('./Router/questionRoute');
+const authmiddleware = require('./authMiddleware/authmiddleware');
+const db = require('./db/dbConfig');
+
+
+
 
 app.use(express.json());
 
 
-app.post("/api/users/register", (req, res) => {
-    res.send("register user");
-});
 
 
-app.post("/api/users/login", (req, res) => {
-    res.send("login user");
-});
+app.use("/api/users", userRoute)
 
-app.get("/api/users/check", (req, res) => {
-    res.send("check user");
-
-});
-
-
+app.use("/api/questions", authmiddleware, questionRoute)
 
 
 

@@ -11,12 +11,15 @@ const db = mysql2.createPool({
 
 
 
-db.execute("SELECT 'test'", (err, res) => {
-    if (err) {
-        console.log(err.message);
-    }
-    else {
-        console.log(res);
-    }
-}
-);
+// db.execute("SELECT 'test'", (err, res) => {
+//     if (err) {
+//         console.log(err.message);
+//     }
+//     else {
+//         console.log(res);
+//     }
+// }
+// );
+
+
+module.exports = db.promise();
