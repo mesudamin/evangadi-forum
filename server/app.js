@@ -4,8 +4,8 @@ const userRoute = require('./Router/userRoute');
 const questionRoute = require('./Router/questionRoute');
 const authmiddleware = require('./authMiddleware/authmiddleware');
 const db = require('./db/dbConfig');
-
-
+const cors = require('cors');
+app.use(cors())
 
 
 app.use(express.json());
