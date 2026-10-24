@@ -90,13 +90,13 @@ async function login(req, res) {
 }
 
 async function check(req, res) {
-    const username = req.user.username;
-    const userid = req.user.userid;
+    // const username = req.user.username;
+    // const userid = req.user.userid;
 
     res.status(200).json({
         message: "Authorized",
-        username,
-        userid
+        // username,
+        // userid
     })
 }
 
