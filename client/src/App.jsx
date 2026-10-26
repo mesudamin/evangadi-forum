@@ -1,9 +1,8 @@
 import { Routes, Route, useNavigate } from 'react-router-dom'
 import { useEffect, createContext, useState } from 'react'
 import Home from './pages/Home'
-import Login from './pages/Login'
-import Register from './pages/Register'
 import axios from './axios/axios'
+import Landingpage from './pages/Landingpage'
 
 export const appData = createContext()
 
@@ -14,7 +13,7 @@ function App() {
   async function checkUser() {
     const token = localStorage.getItem("token");
     if (!token) {
-      navigate("/login");
+      navigate("/");
       return;
     }
     try {
@@ -26,7 +25,7 @@ function App() {
       })
       setUser(data)
     } catch (error) {
-      navigate("/login")
+      navigate("/")
 
     }
   }
@@ -41,9 +40,10 @@ function App() {
   return (
     <appData.Provider value={{ user, setUser }}>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/" element={<Landingpage />} />
+        <Route path="/Home" element={<Home />} />
+        <Route path="/login" element={<Landingpage />} />
+        <Route path="/register" element={<Landingpage />} />
       </Routes>
     </appData.Provider>
   )

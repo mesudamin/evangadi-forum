@@ -93,7 +93,7 @@ async function check(req, res) {
     const username = req.user.username;
     const userid = req.user.userid;
 
-    res.status(200).json({
+    return res.status(200).json({
         message: "Authorized",
         username,
         userid
