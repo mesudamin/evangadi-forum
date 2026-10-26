@@ -72,11 +72,11 @@ async function login(req, res) {
         }
 
         const token = await jwt.sign({ userid: user[0].userid, username: user[0].username }, process.env.jwt_secret, { expiresIn: "30d" });
-
+        const username = user[0].username
 
 
         return res.status(200).json({
-            message: "User logged in successfully", token
+            message: "User logged in successfully", token, username
         })
 
 
@@ -90,13 +90,13 @@ async function login(req, res) {
 }
 
 async function check(req, res) {
-    // const username = req.user.username;
-    // const userid = req.user.userid;
+    const username = req.user.username;
+    const userid = req.user.userid;
 
     res.status(200).json({
         message: "Authorized",
-        // username,
-        // userid
+        username,
+        userid
     })
 }
 

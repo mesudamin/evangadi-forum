@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import axiosInstance from "../axios/axios";
+import { useNavigate, Link } from "react-router-dom";
 
 function Register() {
   const userNameDom = useRef();
@@ -7,6 +8,8 @@ function Register() {
   const lastNameDom = useRef();
   const emailDom = useRef();
   const passwordDom = useRef();
+  const navigate = useNavigate();
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -43,10 +46,11 @@ function Register() {
         email: emailValue,
         password: passwordValue,
       });
-      alert("Registration successful!");
+      navigate("/login");
+
     } catch (error) {
       console.log(error);
-      alert(error?.response?.data?.error || "Registration failed");
+      alert(error?.response?.data?.message);
     }
   };
 
@@ -70,6 +74,7 @@ function Register() {
         </div>
         <button type="submit">Register</button>
       </form>
+      <Link to="/login">login</Link>
     </section>
   );
 }

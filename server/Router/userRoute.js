@@ -10,6 +10,6 @@ Router.post("/register", register);
 Router.post("/login", login);
 
 // user check
-Router.get("/check", check);
+Router.get("/check", authmiddleware, check);
 
 module.exports = Router;
