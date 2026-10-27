@@ -5,18 +5,21 @@ const crypto = require('crypto');
 
 async function get_question(req, res) {
     try {
-        const [questions] = await db.query(`select * FROM questions`)
+        const [questions] = await db.query(
+            `SELECT questions.*, users.username FROM questions LEFT JOIN users ON questions.userid = users.userid ORDER BY questions.id DESC`
+        );
 
         if (questions.length === 0) {
-            return res.status(404).json({
-                message: "No questions found"
-            })
+            return res.status(200).json({
+                message: "No questions found",
+                data: []
+            });
         }
 
         return res.status(200).json({
             message: "Questions fetched successfully",
             data: questions
-        })
+        });
 
 
 
@@ -39,7 +42,10 @@ async function get_question_with_id(req, res) {
     }
 
     try {
-        const [question] = await db.query(`select * FROM questions where questionid = ?`, [questionid])
+        const [question] = await db.query(
+            `SELECT questions.*, users.username FROM questions LEFT JOIN users ON questions.userid = users.userid WHERE questions.questionid = ?`,
+            [questionid]
+        );
 
         if (question.length === 0) {
             return res.status(404).json({

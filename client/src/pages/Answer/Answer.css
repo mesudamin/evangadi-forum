@@ -1,0 +1,121 @@
+.answer_page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+.answer_container {
+  flex: 1;
+  max-width: 1100px;
+  width: 88%;
+  margin: 0 auto;
+  padding: 40px 0 80px 0;
+}
+
+/* Question Header Section */
+.question_display_section {
+  margin-bottom: 24px;
+}
+
+.question_label {
+  font-size: 24px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 10px 0;
+}
+
+.question_subject {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 6px 0;
+}
+
+.question_explanation {
+  font-size: 14px;
+  color: #4b5563;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.answer_divider {
+  border: none;
+  border-top: 1px solid #e5e7eb;
+  margin: 20px 0 28px 0;
+}
+
+/* Community Answers Section */
+.community_answers_section {
+  margin-bottom: 30px;
+}
+
+.community_answers_heading {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 14px 0;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.answers_list {
+  display: flex;
+  flex-direction: column;
+}
+
+.empty_answers {
+  padding: 30px 10px;
+  color: #6b7280;
+  font-size: 15px;
+}
+
+/* State boxes */
+.answer_state_box {
+  padding: 60px 20px;
+  text-align: center;
+  color: #6b7280;
+  font-size: 16px;
+}
+
+.answer_state_box.error {
+  color: #dc2626;
+  background-color: #fef2f2;
+  border: 1px solid #fee2e2;
+  border-radius: 6px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.answer_spinner {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  border: 3px solid #e2e8f0;
+  border-top-color: #516cf0;
+  border-radius: 50%;
+  animation: answer_spin 0.8s linear infinite;
+  margin-bottom: 12px;
+}
+
+@keyframes answer_spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .answer_container {
+    width: 92%;
+    padding: 24px 0 60px 0;
+  }
+
+  .question_label {
+    font-size: 20px;
+  }
+
+  .community_answers_heading {
+    font-size: 18px;
+  }
+}

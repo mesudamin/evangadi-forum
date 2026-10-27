@@ -1,15 +1,27 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import logo from '../../assets/logo.png';
 import './Footer.css';
 
 function Footer() {
+  const location = useLocation();
+  const token = localStorage.getItem('token');
+  const isLandingPage =
+    location.pathname === '/' ||
+    location.pathname === '/login' ||
+    location.pathname === '/register';
+
+  const logoTarget =
+    !isLandingPage && (token || location.pathname.toLowerCase() === '/home')
+      ? '/Home'
+      : '/';
+
   return (
     <footer className="footer_container">
       <div className="footer_inner">
         {/* Column 1: Logo & Social Media */}
         <div className="footer_col footer_brand">
-          <Link to="/">
+          <Link to={logoTarget}>
             <img src={logo} alt="Evangadi Logo" className="footer_logo" />
           </Link>
           <div className="footer_socials">

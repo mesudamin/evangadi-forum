@@ -5,7 +5,8 @@ const { get_answer, post_answer } = require('../controller/answerController')
 
 
 
-Router.get("/:question_id", get_answer)
+Router.get("/:question_id", get_answer);
+Router.get("/id/:questionid", get_answer);
 
 Router.post("/", post_answer)
 

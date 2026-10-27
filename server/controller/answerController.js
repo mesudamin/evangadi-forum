@@ -5,8 +5,7 @@ const db = require("../db/dbConfig");
 
 
 async function get_answer(req, res) {
-    const questionid = req.params.questionid
-
+    const questionid = req.params.question_id || req.params.questionid;
 
     // Validation check
     if (!questionid || !questionid.trim()) {
@@ -16,12 +15,15 @@ async function get_answer(req, res) {
 
 
     try {
-        const [answer] = await db.query("SELECT * FROM answers WHERE questionid = ?", [questionid])
+        const [answer] = await db.query(
+            "SELECT answers.*, users.username FROM answers LEFT JOIN users ON answers.userid = users.userid WHERE answers.questionid = ? ORDER BY answers.answerid DESC",
+            [questionid]
+        );
         if (answer.length === 0) {
-            return res.status(404).json({ message: "The specified question was not found." })
+            return res.status(200).json({ answers: [] });
         }
 
-        return res.status(200).json({ answers: answer })
+        return res.status(200).json({ answers: answer });
 
 
 

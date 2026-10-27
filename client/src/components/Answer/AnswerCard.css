@@ -1,0 +1,64 @@
+.answer_card {
+  display: flex;
+  align-items: flex-start;
+  padding: 20px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.answer_card:last-child {
+  border-bottom: none;
+}
+
+/* User Avatar & Username */
+.answer_author_wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 90px;
+  max-width: 120px;
+  text-align: center;
+  margin-right: 24px;
+  flex-shrink: 0;
+}
+
+.answer_avatar_circle {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 2px solid #b5b5b5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fafafa;
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+
+.answer_avatar_svg {
+  width: 42px;
+  height: 42px;
+  color: #9e9e9e;
+}
+
+.answer_author_name {
+  font-size: 13px;
+  color: #374151;
+  font-weight: 500;
+  word-break: break-word;
+  line-height: 1.2;
+}
+
+/* Answer Body */
+.answer_content {
+  flex: 1;
+  padding-top: 8px;
+}
+
+.answer_text {
+  font-size: 15px;
+  color: #1f2937;
+  line-height: 1.6;
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+}

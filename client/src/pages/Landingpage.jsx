@@ -1,4 +1,4 @@
-import React, { useState, useRef, useContext } from "react";
+import React, { useState, useRef, useContext, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
@@ -13,6 +13,18 @@ function Landingpage() {
   const [successMessage, setSuccessMessage] = useState("");
   const { setUser } = useContext(appData) || {};
   const navigate = useNavigate();
+
+  const token = localStorage.getItem("token");
+
+  useEffect(() => {
+    if (token) {
+      navigate("/Home");
+    }
+  }, [token, navigate]);
+
+  if (token) {
+    return null;
+  }
 
   // Helper to switch forms and clear messages
   const switchForm = (toLogin) => {

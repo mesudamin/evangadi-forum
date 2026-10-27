@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import logo from '../../assets/logo.png';
 import { appData } from '../../App';
 import './Header.css';
@@ -7,6 +7,23 @@ import './Header.css';
 function Header({ isLogin, setIsLogin }) {
   const { user, setUser } = useContext(appData) || {};
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const isLandingPage =
+    location.pathname === '/' ||
+    location.pathname === '/login' ||
+    location.pathname === '/register';
+
+  const token = localStorage.getItem('token');
+  const logoTarget =
+    !isLandingPage && (user?.username || token || location.pathname.toLowerCase() === '/home')
+      ? '/Home'
+      : '/';
+
+  const handleLogoClick = (e) => {
+    e.preventDefault();
+    navigate(logoTarget);
+  };
 
   const handleAuthAction = () => {
     if (user?.username) {
@@ -45,7 +62,7 @@ function Header({ isLogin, setIsLogin }) {
   return (
     <header className="evangadi_header">
       <div className="header_left">
-        <Link to="/">
+        <Link to={logoTarget} onClick={handleLogoClick}>
           <img src={logo} alt="Evangadi Logo" className="header_logo" />
         </Link>
       </div>
