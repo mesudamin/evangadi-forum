@@ -76,9 +76,9 @@ function Landingpage() {
     } catch (error) {
       setErrorMessage(
         error?.response?.data?.error ||
-          error?.response?.data?.message ||
-          error.message ||
-          "Failed to log in"
+        error?.response?.data?.message ||
+        error.message ||
+        "Failed to log in"
       );
     }
   };
@@ -119,9 +119,9 @@ function Landingpage() {
     } catch (error) {
       setErrorMessage(
         error?.response?.data?.error ||
-          error?.response?.data?.message ||
-          error.message ||
-          "Registration failed"
+        error?.response?.data?.message ||
+        error.message ||
+        "Registration failed"
       );
     }
   };
