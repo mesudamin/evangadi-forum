@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import axios from "../../axios/axios.js";
 import "./PostAnswer.css";
 
 function PostAnswer({ questionid, onAnswerPosted }) {
@@ -29,7 +29,7 @@ function PostAnswer({ questionid, onAnswerPosted }) {
     try {
       setSubmitting(true);
       await axios.post(
-        "http://localhost:3000/api/answers",
+        "/answers",
         {
           questionid,
           answer: answer.trim(),
@@ -52,8 +52,8 @@ function PostAnswer({ questionid, onAnswerPosted }) {
     } catch (err) {
       setErrorMessage(
         err?.response?.data?.message ||
-          err?.message ||
-          "Failed to post answer. Please try again."
+        err?.message ||
+        "Failed to post answer. Please try again."
       );
     } finally {
       setSubmitting(false);

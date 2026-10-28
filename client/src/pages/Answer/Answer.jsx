@@ -4,7 +4,7 @@ import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import AnswerCard from "../../components/Answer/AnswerCard";
 import PostAnswer from "../../components/Answer/PostAnswer";
-import axios from "axios";
+import axios from "../../axios/axios.js";
 import "./Answer.css";
 
 function Answer() {
@@ -25,7 +25,7 @@ function Answer() {
     try {
       // 1. Fetch Question details
       const qRes = await axios.get(
-        `http://localhost:3000/api/questions/${questionid}`,
+        `/questions/${questionid}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -36,7 +36,7 @@ function Answer() {
       // 2. Fetch Answers
       try {
         const aRes = await axios.get(
-          `http://localhost:3000/api/answers/${questionid}`,
+          `/answers/${questionid}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -56,8 +56,8 @@ function Answer() {
       } else {
         setError(
           err?.response?.data?.message ||
-            err?.message ||
-            "Failed to load question details"
+          err?.message ||
+          "Failed to load question details"
         );
       }
     } finally {

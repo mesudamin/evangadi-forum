@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
-import axios from "axios";
+import axios from "../axios/axios.js";
 import { appData } from "../App.jsx";
 import "./Home.css";
 
@@ -23,7 +23,7 @@ function Home() {
     const fetchQuestions = async () => {
       try {
         setLoading(true);
-        const response = await axios.get("http://localhost:3000/api/questions", {
+        const response = await axios.get("/questions", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -43,8 +43,8 @@ function Home() {
         } else {
           setError(
             err?.response?.data?.message ||
-              err?.message ||
-              "Failed to load questions. Please try again."
+            err?.message ||
+            "Failed to load questions. Please try again."
           );
         }
       } finally {

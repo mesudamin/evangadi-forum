@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
-import axios from "axios";
+import axios from "../../axios/axios.js";
 import "./AskQuestion.css";
 
 function AskQuestion() {
@@ -39,7 +39,7 @@ function AskQuestion() {
     try {
       setSubmitting(true);
       await axios.post(
-        "http://localhost:3000/api/questions",
+        "/questions",
         {
           title: title.trim(),
           description: description.trim(),
@@ -58,9 +58,9 @@ function AskQuestion() {
     } catch (err) {
       setErrorMessage(
         err?.response?.data?.message ||
-          err?.response?.data?.error ||
-          err?.message ||
-          "Failed to post question. Please try again."
+        err?.response?.data?.error ||
+        err?.message ||
+        "Failed to post question. Please try again."
       );
     } finally {
       setSubmitting(false);
